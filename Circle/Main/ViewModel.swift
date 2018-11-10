@@ -27,14 +27,14 @@ class ViewModel {
     }
     
 
-    func setNewColorValues(_ red: Int? = nil, _ green: Int? = nil,_  blue: Int? = nil) {
+    func setNewColorValues(_ red: Float? = nil, _ green: Float? = nil,_  blue: Float? = nil) {
         if let redColor = red { circle.color.red = redColor }
         if let greenColor = green { circle.color.green = greenColor }
         if let blueColor = blue { circle.color.blue = blueColor }
         listener?.onCircleChanged(circle)
     }
     
-    func setNewCircleSize(size: Int) {
+    func setNewCircleSize(size: Double) {
         circle.size = size
         listener?.onCircleChanged(circle)
     }

@@ -7,8 +7,14 @@
 //
 
 import Foundation
+import UIKit
 class Color {
-    var red: Int = 100
-    var green: Int = 150
-    var blue: Int = 200
+    var red: Float = 100
+    var green: Float = 150
+    var blue: Float = 200
+    
+    func toUIColor() -> UIColor {
+        return UIColor(red: CGFloat(red / 255), green: CGFloat(green / 255), blue: CGFloat(blue / 255), alpha: 1.0)
+    }
+    
 }

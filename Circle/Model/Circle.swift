@@ -11,6 +11,6 @@ import Foundation
 class Circle {
     
     let color : Color = Color()
-    var size: Int = 40
+    var size: Double = 40
     
 }

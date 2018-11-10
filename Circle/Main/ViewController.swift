@@ -13,12 +13,12 @@ class ViewController: UIViewController, CircleChangeListener{
     let viewModel = ViewModel()
     
     @IBOutlet weak var currentSizeLabel: UILabel! {
-        didSet {
-           currentSizeLabel.text = viewModel.circle.size.description
-        }
+        didSet { currentSizeLabel.text = viewModel.circle.size.description }
     }
     
-    @IBOutlet weak var circleViewContainer: UIView!
+    @IBOutlet weak var circleViewContainer: UIView! {
+        didSet { onCircleChanged(viewModel.circle)}
+    }
     
     @IBOutlet weak var stepper: UIStepper! {
         didSet { stepper.value = Double(viewModel.circle.size)}
@@ -35,6 +35,7 @@ class ViewController: UIViewController, CircleChangeListener{
     }
     
     
+    @IBOutlet weak var circleView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +45,18 @@ class ViewController: UIViewController, CircleChangeListener{
     }
     
     func onCircleChanged(_ circle: Circle) {
-        currentSizeLabel.text = circle.size.description
-        print(circle)
+        var frame = self.circleView.frame
+        frame.size = CGSize(width: circle.size, height: circle.size)
+        circleView.frame = frame
+        circleView.layer.cornerRadius = self.circleView.frame.size.width / 2
+        circleView.clipsToBounds = true
+        circleView.backgroundColor = circle.color.toUIColor()
     }
     
     @IBAction func onStepperValueChanged(_ sender: UIStepper) {
-        viewModel.setNewCircleSize(size: Int(sender.value))
+        viewModel.setNewCircleSize(size: sender.value)
+        currentSizeLabel.text = sender.value.description
+
     }
     
     @IBAction func onSwitchValueChanged(_ sender: UISwitch) {
@@ -57,15 +64,15 @@ class ViewController: UIViewController, CircleChangeListener{
     }
 
     @IBAction func onRedSliderValueChanged(_ sender: UISlider) {
-        viewModel.setNewColorValues(Int(sender.value), nil, nil)
+        viewModel.setNewColorValues(sender.value, nil, nil)
     }
     
     @IBAction func onGreenSliderValueChanged(_ sender: UISlider) {
-        viewModel.setNewColorValues(nil, Int(sender.value), nil)
+        viewModel.setNewColorValues(nil, sender.value, nil)
 
     }
     @IBAction func onBlueSliderValueChanged(_ sender: UISlider) {
-        viewModel.setNewColorValues(nil, nil, Int(sender.value))
+        viewModel.setNewColorValues(nil, nil, sender.value)
     }
     override func viewDidDisappear(_ animated: Bool) {
         viewModel.detach()

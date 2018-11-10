@@ -24,7 +24,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="aAg-a6-fK2">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="29"/>
                                         <subviews>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minimumValue="20" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="qGa-gQ-g5i">
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minimumValue="20" maximumValue="200" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="qGa-gQ-g5i">
                                                 <rect key="frame" x="0.0" y="0.0" width="94" height="29"/>
                                                 <connections>
                                                     <action selector="onStepperValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Cuu-yR-Qda"/>
@@ -46,18 +46,24 @@
                                     </stackView>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="150" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="cRA-3N-Oe0">
                                         <rect key="frame" x="-2" y="45" width="347" height="31"/>
+                                        <color key="minimumTrackTintColor" red="0.96170660620000004" green="0.2261258307" blue="0.25111131990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="thumbTintColor" red="0.71618902158243047" green="0.0083399541089011781" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <action selector="onRedSliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Xhw-fU-LDA"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="150" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="42c-9f-K38">
                                         <rect key="frame" x="-2" y="91" width="347" height="31"/>
+                                        <color key="minimumTrackTintColor" red="0.081304007080000004" green="0.62024368519999995" blue="0.054666554950000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="thumbTintColor" red="0.081304007076492754" green="0.62024368523316065" blue="0.054666554952252172" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <connections>
                                             <action selector="onGreenSliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="7Oe-pz-R8U"/>
                                         </connections>
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="150" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="1G7-vY-9x0">
                                         <rect key="frame" x="-2" y="137" width="347" height="31"/>
+                                        <color key="minimumTrackTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="thumbTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="onBlueSliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="FNw-eR-4Ea"/>
                                         </connections>
@@ -66,6 +72,13 @@
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="84f-k2-SnV">
                                 <rect key="frame" x="16" y="36" width="343" height="432"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CND-QW-QXg">
+                                        <rect key="frame" x="51" y="140" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" red="0.8564335918653726" green="0.85130524700390331" blue="0.86156193672684189" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                         </subviews>
@@ -83,6 +96,7 @@
                     </view>
                     <connections>
                         <outlet property="blueSlider" destination="1G7-vY-9x0" id="0Fc-Ou-14P"/>
+                        <outlet property="circleView" destination="CND-QW-QXg" id="KRU-EP-NNW"/>
                         <outlet property="circleViewContainer" destination="84f-k2-SnV" id="WDe-XL-v9t"/>
                         <outlet property="currentSizeLabel" destination="9Xb-BK-OaU" id="EOC-Qz-VKt"/>
                         <outlet property="greenSlider" destination="42c-9f-K38" id="ecC-8t-ky5"/>
