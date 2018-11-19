@@ -8,30 +8,31 @@
 
 import UIKit
 
+
 class ViewController: UIViewController, CircleChangeListener{
     
-    let viewModel = ViewModel()
+    let presenter = MainPresenter()
     
     @IBOutlet weak var currentSizeLabel: UILabel! {
-        didSet { currentSizeLabel.text = viewModel.circle.size.description }
+        didSet { currentSizeLabel.text = presenter.circle.size.description }
     }
     
     @IBOutlet weak var circleViewContainer: UIView! {
-        didSet { onCircleChanged(viewModel.circle)}
+        didSet { onCircleChanged(presenter.circle)}
     }
     
     @IBOutlet weak var stepper: UIStepper! {
-        didSet { stepper.value = Double(viewModel.circle.size)}
+        didSet { stepper.value = Double(presenter.circle.size)}
     }
     
     @IBOutlet weak var greenSlider: UISlider! {
-        didSet {greenSlider.value = Float(viewModel.circle.color.green) }
+        didSet {greenSlider.value = Float(presenter.circle.color.green) }
     }
     @IBOutlet weak var redSlider: UISlider! {
-        didSet {redSlider.value = Float(viewModel.circle.color.red)}
+        didSet {redSlider.value = Float(presenter.circle.color.red)}
     }
     @IBOutlet weak var blueSlider: UISlider! {
-        didSet {blueSlider.value = Float(viewModel.circle.color.blue)}
+        didSet {blueSlider.value = Float(presenter.circle.color.blue)}
     }
     
     
@@ -39,11 +40,37 @@ class ViewController: UIViewController, CircleChangeListener{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.attach(self)
+        presenter.attach(self)
+
+        print("Bounds: \(circleViewContainer.frame)")
+        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(recognizer:)))
+        self.circleView.addGestureRecognizer(gestureRecognizer)
         print("View did load set")
 
     }
     
+
+    
+    @objc func handlePanGesture(recognizer : UIPanGestureRecognizer) {
+    
+        if (presenter.dragEnabled) {
+        
+            let point = recognizer.location(in: circleViewContainer)
+            let bounds = circleViewContainer.bounds
+            var circle = circleView.frame
+        
+            var newX = min(point.x, bounds.size.width - circle.size.width)
+            newX = max(newX, 0.0)
+            var newY = min(point.y, bounds.size.height - circle.size.height)
+            newY = max(newY, 0.0)
+            circle.origin.x = newX
+            circle.origin.y = newY
+            circleView.frame = circle
+        }
+        
+    
+    }
+
     func onCircleChanged(_ circle: Circle) {
         var frame = self.circleView.frame
         frame.size = CGSize(width: circle.size, height: circle.size)
@@ -54,28 +81,28 @@ class ViewController: UIViewController, CircleChangeListener{
     }
     
     @IBAction func onStepperValueChanged(_ sender: UIStepper) {
-        viewModel.setNewCircleSize(size: sender.value)
+        presenter.setNewCircleSize(size: sender.value)
         currentSizeLabel.text = sender.value.description
 
     }
     
     @IBAction func onSwitchValueChanged(_ sender: UISwitch) {
-        
+            presenter.dragEnabled = sender.isOn
     }
 
     @IBAction func onRedSliderValueChanged(_ sender: UISlider) {
-        viewModel.setNewColorValues(sender.value, nil, nil)
+        presenter.setNewColorValues(sender.value, nil, nil)
     }
     
     @IBAction func onGreenSliderValueChanged(_ sender: UISlider) {
-        viewModel.setNewColorValues(nil, sender.value, nil)
+        presenter.setNewColorValues(nil, sender.value, nil)
 
     }
     @IBAction func onBlueSliderValueChanged(_ sender: UISlider) {
-        viewModel.setNewColorValues(nil, nil, sender.value)
+        presenter.setNewColorValues(nil, nil, sender.value)
     }
     override func viewDidDisappear(_ animated: Bool) {
-        viewModel.detach()
+        presenter.detach()
     }
 }
 

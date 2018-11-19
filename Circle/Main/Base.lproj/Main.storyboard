@@ -62,7 +62,7 @@
                                     </slider>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="150" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="1G7-vY-9x0">
                                         <rect key="frame" x="-2" y="137" width="347" height="31"/>
-                                        <color key="minimumTrackTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="minimumTrackTintColor" red="0.64284652236565076" green="0.66708578526243711" blue="0.96620899438858032" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="thumbTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="onBlueSliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="FNw-eR-4Ea"/>
@@ -74,7 +74,7 @@
                                 <rect key="frame" x="16" y="36" width="343" height="432"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CND-QW-QXg">
-                                        <rect key="frame" x="51" y="140" width="240" height="128"/>
+                                        <rect key="frame" x="51" y="152" width="240" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>

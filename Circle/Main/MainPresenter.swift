@@ -8,12 +8,14 @@
 
 import Foundation
 
-class ViewModel {
+class MainPresenter {
     init() {
         print("View Modele Init")
     }
     let circle = Circle()
-
+    var dragEnabled = true
+    
+    
     private var listener: CircleChangeListener? = nil
     
     
